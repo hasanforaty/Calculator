@@ -26,7 +26,7 @@ import com.hasan.foraty.calculator.ui.theme.CalculatorTheme
 
 
 @Composable
-private fun CalculatorButton(
+fun CalculatorButton(
     button:CalculatorB,
     modifier: Modifier = Modifier,
     fontSize: TextUnit = 12.sp,

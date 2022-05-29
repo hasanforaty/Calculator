@@ -5,5 +5,7 @@ sealed class CalculatorAction {
     object Minus:CalculatorAction()
     object Divine:CalculatorAction()
     object Present:CalculatorAction()
+    object Reverse:CalculatorAction()
+    object Clear:CalculatorAction()
     data class Number(val number:String):CalculatorAction()
 }
