@@ -15,7 +15,7 @@ class CalculatorViewModel:ViewModel() {
     }
 
 
-    private val _firstState = mutableStateOf("")
+    private val _firstState = mutableStateOf("0")
 
     private val _secondState = mutableStateOf("")
 
@@ -104,7 +104,7 @@ class CalculatorViewModel:ViewModel() {
     }
 
     private fun emptyState(){
-        _firstState.value = ""
+        _firstState.value = "0"
         _secondState.value = ""
         _operation.value = ""
     }

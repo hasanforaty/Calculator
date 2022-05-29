@@ -6,6 +6,8 @@ import androidx.compose.material.Surface
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 
 import androidx.compose.ui.Modifier
@@ -16,8 +18,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.hasan.foraty.calculator.domain.model.CalculatorAction
-import com.hasan.foraty.calculator.domain.model.CalculatorB
 import com.hasan.foraty.calculator.ui.component.CalculatorButton
 import com.hasan.foraty.calculator.ui.theme.CalculatorTheme
 import com.hasan.foraty.calculator.ui.viewmodels.CalculatorViewModel
@@ -27,6 +27,10 @@ fun CalculatorMainScreen(
     viewModel: CalculatorViewModel
 ) {
     val spacedBy = 8.dp
+    //TODO check to See , if we are in LandScape or not
+    val isLandScape = remember {
+        mutableStateOf(false)
+    }
     Box(
         modifier = Modifier,
     ) {
@@ -34,7 +38,7 @@ fun CalculatorMainScreen(
             verticalArrangement = Arrangement.spacedBy(spacedBy),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = spacedBy,end = spacedBy)
+                .padding(start = spacedBy, end = spacedBy)
                 .align(Alignment.BottomCenter)
         ) {
             Text(
@@ -51,19 +55,23 @@ fun CalculatorMainScreen(
                 overflow = TextOverflow.Ellipsis
 
             )
-            CalculatorButtons(viewModel = viewModel, buttonSpace = spacedBy)
+            CalculatorButtons(
+                landScape = isLandScape.value,
+                buttonSpace = spacedBy,
+                viewModel = viewModel
+            )
         }
     }
 }
 
 @Composable
-fun ColumnScope.CalculatorButtons(
+fun CalculatorButtons(
     landScape: Boolean = false,
     buttonSpace: Dp,
     viewModel: CalculatorViewModel
 ) {
     if (landScape) {
-
+        //TODO add view for LandScape View
     } else {
         for (row in viewModel.portrayRows){
             Row(
