@@ -10,5 +10,7 @@ sealed class CalculatorAction {
     object Reverse:CalculatorAction()
     object Result:CalculatorAction()
     object Clear:CalculatorAction()
+    object Remove : CalculatorAction()
+
     data class Number(val number:Int):CalculatorAction()
 }

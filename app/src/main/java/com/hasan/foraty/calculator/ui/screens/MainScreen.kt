@@ -2,6 +2,8 @@ package com.hasan.foraty.calculator.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Surface
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -40,6 +42,7 @@ fun CalculatorMainScreen(
                 .fillMaxWidth()
                 .padding(start = spacedBy, end = spacedBy)
                 .align(Alignment.BottomCenter)
+                .verticalScroll(rememberScrollState())
         ) {
             Text(
                 text = viewModel.resultState.value,

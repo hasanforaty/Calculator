@@ -67,6 +67,20 @@ class CalculatorViewModel:ViewModel() {
                     _secondState.value = "-"+_secondState.value
                 }
             }
+            CalculatorAction.Remove ->{
+                when {
+                    _secondState.value.isNotEmpty() -> {
+                        _secondState.value = _secondState.value.dropLast(1)
+                    }
+                    _operation.value.isNotEmpty() -> {
+                        _operation.value = ""
+                    }
+                    else -> {
+                        _firstState.value = _firstState.value.dropLast(1)
+                        if (_firstState.value.isEmpty()) _firstState.value = "0"
+                    }
+                }
+            }
         }
     }
     private fun calculate(){
@@ -136,7 +150,7 @@ class CalculatorViewModel:ViewModel() {
         ),
         CalculatorBRow(
             listOf(
-                CalculatorB("0",CalculatorAction.Number(0)),CalculatorB(".",CalculatorAction.Decimal),CalculatorB("=",CalculatorAction.Result),
+                CalculatorB("0",CalculatorAction.Number(0)),CalculatorB(".",CalculatorAction.Decimal),CalculatorB("=",CalculatorAction.Result),CalculatorB("<-",CalculatorAction.Remove),
             )
         )
     )
