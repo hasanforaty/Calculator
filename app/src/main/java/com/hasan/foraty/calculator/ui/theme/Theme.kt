@@ -1,19 +1,25 @@
 package com.hasan.foraty.calculator.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColorScheme(
-    primaryContainer = Purple200,
-    secondaryContainer = Teal200
+    primaryContainer = yellow,
+    secondaryContainer = secondaryDark,
+    onSecondaryContainer = Color.White,
+
 )
 
 private val LightColorPalette = lightColorScheme(
-    primaryContainer = Purple500,
-    secondaryContainer = Teal200
+    primaryContainer = lighterYellow,
+    secondaryContainer = secondary,
+    onSecondaryContainer = Color.White,
+
 
     /* Other default colors to override
     background = Color.White,
@@ -26,7 +32,7 @@ private val LightColorPalette = lightColorScheme(
 )
 
 @Composable
-fun CalculatorTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
+fun CalculatorTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {
