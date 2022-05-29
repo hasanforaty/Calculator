@@ -22,12 +22,94 @@ class CalculatorViewModel:ViewModel() {
     val secondState:State<String> = _secondState
 
     private val _operation = mutableStateOf("")
-    val operationState:State<String> = _operation
 
 
     fun doActionCalculator(action:CalculatorB){
-        TODO()
+        when(action.action){
+            CalculatorAction.Add,CalculatorAction.Divine,CalculatorAction.Minus,CalculatorAction.Multiple,CalculatorAction.Present -> {
+                if (_operation.value.isEmpty()){
+                    _operation.value = action.symbol
+                }else{
+                    calculate()
+                    _operation.value = action.symbol
+                }
+            }
+            CalculatorAction.Clear -> {
+                emptyState()
+            }
+            CalculatorAction.Declaim -> {
+                if (_operation.value.isEmpty()){
+                    if (_firstState.value.contains(".")) return
+                    if (_firstState.value.isEmpty()) _firstState.value = "0"
+                    _firstState.value = firstState.value.plus(".")
+                }else {
+                    if (_secondState.value.contains("."))return
+                    if (_secondState.value.isEmpty())_secondState.value = "0"
+                    _secondState.value = _secondState.value.plus(".")
+                }
+            }
+            is CalculatorAction.Number -> {
+                if (_operation.value.isEmpty()){
+                    if (_firstState.value=="0") _firstState.value = ""
+                    _firstState.value = _firstState.value.plus(action.action.number)
+                }else{
+                    if (_secondState.value=="0") _secondState.value = ""
+                    _secondState.value = _secondState.value.plus(action.action.number)
+                }
+            }
+            CalculatorAction.Result -> {
+                calculate()
+            }
+            CalculatorAction.Reverse -> {
+                if (_operation.value.isEmpty()){
+                    if (_firstState.value=="0") return
+                    _firstState.value = "-"+_firstState.value
+                }else{
+                    if (_secondState.value=="0") return
+                    _secondState.value = "-"+_secondState.value
+                }
+            }
+        }
     }
+    private fun calculate(){
+        if (_firstState.value.isNotEmpty()){
+            if (_secondState.value.isEmpty()) {
+                _operation.value = ""
+                return
+            }
+            val result:Double = when(_operation.value){
+                "+"->{
+                    firstState.value.toDouble().plus(secondState.value.toDouble())
+                }
+                "/"->{
+                    firstState.value.toDouble().div(secondState.value.toDouble())
+                }
+                "-"->{
+                    firstState.value.toDouble().minus(secondState.value.toDouble())
+                }
+                "*"->{
+                    firstState.value.toDouble() * secondState.value.toDouble()
+                }
+                "%"->{
+                    firstState.value.toDouble().rem(secondState.value.toDouble())
+                }
+                else ->{
+                    _firstState.value.toDouble()
+                }
+            }
+            emptyState()
+            _firstState.value = result.toString()
+        }
+
+
+    }
+
+    private fun emptyState(){
+        _firstState.value = ""
+        _secondState.value = ""
+        _operation.value = ""
+    }
+
 
 
 
