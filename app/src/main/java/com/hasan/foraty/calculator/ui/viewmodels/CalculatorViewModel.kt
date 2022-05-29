@@ -62,10 +62,10 @@ class CalculatorViewModel:ViewModel() {
             }
             CalculatorAction.Reverse -> {
                 if (_operation.value.isEmpty()){
-                    if (_firstState.value=="0") return
+                    if (_firstState.value=="0"||_firstState.value.isEmpty()) return
                     _firstState.value = "-"+_firstState.value
                 }else{
-                    if (_secondState.value=="0") return
+                    if (_secondState.value=="0"||_secondState.value.isEmpty()) return
                     _secondState.value = "-"+_secondState.value
                 }
             }
