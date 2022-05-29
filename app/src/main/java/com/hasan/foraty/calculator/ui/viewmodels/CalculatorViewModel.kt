@@ -137,7 +137,7 @@ class CalculatorViewModel:ViewModel() {
         ),
         CalculatorBRow(
             listOf(
-                CalculatorB("0",CalculatorAction.Number(0)),CalculatorB(".",CalculatorAction.Declaim),CalculatorB("9",CalculatorAction.Result),
+                CalculatorB("0",CalculatorAction.Number(0)),CalculatorB(".",CalculatorAction.Declaim),CalculatorB("=",CalculatorAction.Result),
             )
         )
     )
