@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Surface
@@ -15,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -48,19 +50,24 @@ fun CalculatorMainScreen(
                 .align(if (isLandScape.value) Alignment.TopCenter else Alignment.BottomCenter)
                 .verticalScroll(rememberScrollState())
         ) {
-            Text(
-                text = viewModel.resultState.value,
-                textAlign = TextAlign.End,
+
+
+            BasicTextField(
+                value = viewModel.resultState.value,
+                onValueChange = {},
+                readOnly = true,
+                maxLines = 2,
+                textStyle =
+                TextStyle.Default.copy(
+                    fontSize = 60.sp,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    letterSpacing = 2.sp,
+                    fontWeight = FontWeight.Light,
+                    textAlign = TextAlign.End,
+                ),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 32.dp),
-                fontWeight = FontWeight.Light,
-                fontSize = 60.sp,
-                maxLines = 2,
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
-                letterSpacing = 2.sp,
-                overflow = TextOverflow.Ellipsis
-
             )
             CalculatorButtons(
                 landScape = isLandScape.value,
