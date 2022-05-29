@@ -12,6 +12,7 @@ private val DarkColorPalette = darkColorScheme(
     primaryContainer = yellow,
     secondaryContainer = secondaryDark,
     onSecondaryContainer = Color.White,
+    onPrimaryContainer = Color.White
 
 )
 
@@ -19,7 +20,7 @@ private val LightColorPalette = lightColorScheme(
     primaryContainer = lighterYellow,
     secondaryContainer = secondary,
     onSecondaryContainer = Color.White,
-
+    onPrimaryContainer = Color.Black
 
     /* Other default colors to override
     background = Color.White,

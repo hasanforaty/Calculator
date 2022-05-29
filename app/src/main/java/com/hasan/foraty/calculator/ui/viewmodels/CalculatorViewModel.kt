@@ -16,10 +16,8 @@ class CalculatorViewModel:ViewModel() {
 
 
     private val _firstState = mutableStateOf("")
-    val firstState:State<String> = _firstState
 
     private val _secondState = mutableStateOf("")
-    val secondState:State<String> = _secondState
 
     private val _operation = mutableStateOf("")
 
@@ -37,11 +35,11 @@ class CalculatorViewModel:ViewModel() {
             CalculatorAction.Clear -> {
                 emptyState()
             }
-            CalculatorAction.Declaim -> {
+            CalculatorAction.Decimal -> {
                 if (_operation.value.isEmpty()){
                     if (_firstState.value.contains(".")) return
                     if (_firstState.value.isEmpty()) _firstState.value = "0"
-                    _firstState.value = firstState.value.plus(".")
+                    _firstState.value = _firstState.value.plus(".")
                 }else {
                     if (_secondState.value.contains("."))return
                     if (_secondState.value.isEmpty())_secondState.value = "0"
@@ -79,26 +77,27 @@ class CalculatorViewModel:ViewModel() {
             }
             val result:Double = when(_operation.value){
                 "+"->{
-                    firstState.value.toDouble().plus(secondState.value.toDouble())
+                    _firstState.value.toDouble().plus(_secondState.value.toDouble())
                 }
                 "/"->{
-                    firstState.value.toDouble().div(secondState.value.toDouble())
+                    _firstState.value.toDouble().div(_secondState.value.toDouble())
                 }
                 "-"->{
-                    firstState.value.toDouble().minus(secondState.value.toDouble())
+                    _firstState.value.toDouble().minus(_secondState.value.toDouble())
                 }
                 "*"->{
-                    firstState.value.toDouble() * secondState.value.toDouble()
+                    _firstState.value.toDouble() * _secondState.value.toDouble()
                 }
                 "%"->{
-                    firstState.value.toDouble().rem(secondState.value.toDouble())
+                    _firstState.value.toDouble().rem(_secondState.value.toDouble())
                 }
                 else ->{
                     _firstState.value.toDouble()
                 }
             }
             emptyState()
-            _firstState.value = result.toString()
+
+            _firstState.value = (result*100.0).toInt().toDouble().div(100).toString()
         }
 
 
@@ -137,7 +136,7 @@ class CalculatorViewModel:ViewModel() {
         ),
         CalculatorBRow(
             listOf(
-                CalculatorB("0",CalculatorAction.Number(0)),CalculatorB(".",CalculatorAction.Declaim),CalculatorB("=",CalculatorAction.Result),
+                CalculatorB("0",CalculatorAction.Number(0)),CalculatorB(".",CalculatorAction.Decimal),CalculatorB("=",CalculatorAction.Result),
             )
         )
     )

@@ -5,7 +5,7 @@ sealed class CalculatorAction {
     object Minus:CalculatorAction()
     object Divine:CalculatorAction()
     object Multiple:CalculatorAction()
-    object Declaim:CalculatorAction()
+    object Decimal:CalculatorAction()
     object Present:CalculatorAction()
     object Reverse:CalculatorAction()
     object Result:CalculatorAction()
