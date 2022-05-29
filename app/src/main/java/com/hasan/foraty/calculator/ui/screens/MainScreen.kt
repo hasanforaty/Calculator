@@ -1,5 +1,6 @@
 package com.hasan.foraty.calculator.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Surface
 import androidx.compose.material3.MaterialTheme
@@ -32,6 +33,7 @@ fun CalculatorMainScreen(
             verticalArrangement = Arrangement.spacedBy(spacedBy),
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(start = spacedBy,end = spacedBy)
                 .align(Alignment.BottomCenter)
         ) {
             Text(
@@ -41,7 +43,7 @@ fun CalculatorMainScreen(
                     .fillMaxWidth()
                     .padding(vertical = 32.dp),
                 fontWeight = FontWeight.Light,
-                fontSize = 80.sp,
+                fontSize = 60.sp,
                 maxLines = 2,
             )
             CalculatorButtons(viewModel = viewModel, buttonSpace = spacedBy)
@@ -67,8 +69,10 @@ fun ColumnScope.CalculatorButtons(
                         button = button,
                         modifier = Modifier
                             .aspectRatio(1f)
-                            .weight(1f),
-                        onClickListener = viewModel::doActionCalculator
+                            .weight(1f)
+                            .background(MaterialTheme.colorScheme.secondaryContainer),
+                        onClickListener = viewModel::doActionCalculator,
+                        fontSize = 20.sp
                     )
                 }
             }
