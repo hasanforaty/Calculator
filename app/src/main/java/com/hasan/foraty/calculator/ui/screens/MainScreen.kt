@@ -58,17 +58,22 @@ fun ColumnScope.CalculatorButtons(
     if (landScape) {
 
     } else {
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(buttonSpace)
-        ) {
-            CalculatorButton(
-                button = CalculatorB("AC", action = CalculatorAction.Clear),
-                modifier = Modifier
-                    .aspectRatio(2f)
-                    .weight(2f),
-                onClickListener = viewModel::doActionCalculator
-            )
+        for (row in viewModel.portrayRows){
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(buttonSpace)
+            ) {
+                for (button in row.list){
+                    CalculatorButton(
+                        button = button,
+                        modifier = Modifier
+                            .aspectRatio(1f)
+                            .weight(1f),
+                        onClickListener = viewModel::doActionCalculator
+                    )
+                }
+            }
         }
+
     }
 }
 
